@@ -74,6 +74,11 @@ hi User6 ctermfg=white ctermbg=darkgray
 hi TabLine ctermfg=Black ctermbg=Grey
 hi TabLineSel ctermfg=White ctermbg=Black
 
+autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
+
+
+" hotkeys {{{
+
 imap<F9> <ESC>:w<Enter><F9>
 nmap<F9> :!./%:t
 
@@ -105,6 +110,7 @@ function! Set_web_Prefs()
 	setlocal tabstop=2
 	setlocal shiftwidth=2
 	setlocal listchars=tab:\|\ 
+	nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
 endfunction
 
 
@@ -114,7 +120,8 @@ autocmd filetype cpp call Set_cpp_Prefs()
 "autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
 
-autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
+" }}}
+
 
 
 
@@ -128,14 +135,22 @@ Bundle 'gmarik/vundle'
 " NERDTree
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+
 " SuperTab
 Bundle 'ervandew/supertab'
+
+" jsbeautify
+Bundle 'maksimr/vim-jsbeautify'
 
 " }}}
 
 " NERDTree {{{
 map <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeDirArrows=0
+" }}}
+
+" jsbeautify {{{
+set shell=/bin/sh
 " }}}
 
 " }}}
