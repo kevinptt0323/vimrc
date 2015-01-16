@@ -9,12 +9,6 @@ else
 	call vundle#rc('$HOME/vimfiles/bundle/')
 endif
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" Bundles
-
 
 filetype on
 
@@ -122,3 +116,23 @@ autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
 
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
 
+
+
+" plugin {{{
+" bundle settings {{{
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" NERDTree
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+"
+" }}}
+" NERDTree {{{
+map <C-n> :NERDTreeTabsToggle<CR>
+let g:NERDTreeDirArrows=0
+" }}}
+"
+" }}}
