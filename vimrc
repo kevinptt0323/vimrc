@@ -128,11 +128,14 @@ Bundle 'gmarik/vundle'
 " NERDTree
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
-"
+" SuperTab
+Bundle 'ervandew/supertab'
+
 " }}}
+
 " NERDTree {{{
 map <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeDirArrows=0
 " }}}
-"
+
 " }}}
