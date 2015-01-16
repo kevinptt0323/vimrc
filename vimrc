@@ -1,4 +1,24 @@
-" 20141217 1722
+set nocompatible
+" set for vundle
+filetype off
+if has("unix")
+	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
+else 
+	set rtp+=~/vimfiles/bundle/vundle/
+	call vundle#rc('$HOME/vimfiles/bundle/')
+endif
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" Bundles
+
+
+filetype on
+
+
 "Encoding settings
 set encoding=utf-8
 set fileformat=unix
@@ -94,7 +114,6 @@ function! Set_web_Prefs()
 endfunction
 
 
-filetype on
 filetype plugin on
 autocmd filetype c call Set_c_Prefs()
 autocmd filetype cpp call Set_cpp_Prefs()
@@ -103,4 +122,3 @@ autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
 
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
 
-execute pathogen#infect()
