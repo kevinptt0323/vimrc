@@ -88,17 +88,14 @@ nnoremap j gj
 inoremap jj <ESC> 
 
 function! Set_c_Prefs()
-	nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"
-	nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im
-	nmap<F11> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -g && valgrind --leak-check=full --log-file=%:r.vglog ./%:r.out
+	nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
+	nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im<CR>
+	nmap<F11> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -g && valgrind --leak-check=full --log-file=%:r.vglog ./%:r.out<CR>
 endfunction
 function! Set_cpp_Prefs()
-	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"
-	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"
-	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT 
-	"map<F9> :!g++ "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"
-	"map<F10> :!g++ "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -DKEVINPTT
-	"map<F11> :!g++ "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -g && valgrind --leak-check=full --log-file=%:r.vglog ./%:r.out
+	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
+	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
+	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
 endfunction
 function! Set_pascal_Prefs()
 	nmap<F9>  :!fpc "%:t" && echo "===== compile done =====" && "./%:r"
@@ -121,9 +118,6 @@ autocmd filetype cpp call Set_cpp_Prefs()
 autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
 
 " }}}
-
-
-
 
 " plugin {{{
 " bundle settings {{{
