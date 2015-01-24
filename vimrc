@@ -144,7 +144,6 @@ let g:NERDTreeDirArrows=0
 " }}}
 
 " jsbeautify {{{
-set shell=/bin/sh
 " }}}
 
 " }}}
