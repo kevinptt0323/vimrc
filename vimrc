@@ -92,11 +92,17 @@ function! Set_c_Prefs()
 	nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im<CR>
 	nmap<F11> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -g && valgrind --leak-check=full --log-file=%:r.vglog ./%:r.out<CR>
 endfunction
+
 function! Set_cpp_Prefs()
 	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
 	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
 	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
 endfunction
+
+function! Set_python_Prefs()
+	nmap<F9> :!python3 "%:t"
+endfunction
+
 function! Set_pascal_Prefs()
 	nmap<F9>  :!fpc "%:t" && echo "===== compile done =====" && "./%:r"
 	nmap<F10> :!fpc "%:t"
@@ -114,8 +120,10 @@ endfunction
 filetype plugin on
 autocmd filetype c call Set_c_Prefs()
 autocmd filetype cpp call Set_cpp_Prefs()
+autocmd filetype python call Set_python_Prefs()
 "autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
+au BufNewFile,BufRead *.ejs set filetype=html
 
 " }}}
 
