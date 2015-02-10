@@ -112,8 +112,16 @@ endfunction
 function! Set_web_Prefs()
 	setlocal tabstop=2
 	setlocal shiftwidth=2
-	setlocal listchars=tab:\|\ 
+	setlocal expandtab
+	"setlocal listchars=tab:\|\ 
+endfunction
+
+function! Set_js_Prefs()
+	setlocal tabstop=4
+	setlocal shiftwidth=4
+	setlocal expandtab
 	nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
+	nmap<F10> :!jshint "%"
 endfunction
 
 
@@ -122,7 +130,8 @@ autocmd filetype c call Set_c_Prefs()
 autocmd filetype cpp call Set_cpp_Prefs()
 autocmd filetype python call Set_python_Prefs()
 "autocmd filetype pascal call Set_pascal_Prefs()
-autocmd filetype javascript,htm,xml,html,xhtml,php,css call Set_web_Prefs()
+autocmd filetype htm,xml,html,xhtml,php,css call Set_web_Prefs()
+autocmd filetype javascript call Set_js_Prefs()
 au BufNewFile,BufRead *.ejs set filetype=html
 
 " }}}
