@@ -1,11 +1,12 @@
 set nocompatible
 " set for vundle
+" git clone https://github.com/gmarik/Vundle.vim
 filetype off
 if has("unix")
-	set rtp+=~/.vim/bundle/vundle/
+	set rtp+=~/.vim/bundle/Vundle.vim/
 	call vundle#rc()
 else 
-	set rtp+=~/vimfiles/bundle/vundle/
+	set rtp+=~/vimfiles/bundle/Vundle.vim/
 	call vundle#rc('$HOME/vimfiles/bundle/')
 endif
 
