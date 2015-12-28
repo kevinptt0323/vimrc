@@ -1,4 +1,3 @@
-set nocompatible
 " set for vundle
 " git clone https://github.com/gmarik/Vundle.vim
 filetype off
@@ -20,33 +19,49 @@ set fileformat=unix
 set ambiwidth=double
 set fileencodings=utf-8,big5,latin1
 
-" Show mode on bottom-left
-set showmode
+set nocompatible
+set ttyfast
+set hidden
 
-" Color settings
+set nobackup
+set noswapfile
+
+
+" Views
 syntax on
-set t_Co=256
-set hlsearch
-set bg=dark
-
-" Status line
-set laststatus=2
-set wildmenu " commend line auto complete
-
-" keep at least 5 lines above/below
-set scrolloff=5
-
 set ruler
 set cursorline
+set cursorcolumn
+set showmode    " Show mode on bottom-left
+set scrolloff=5 " keep at least 5 lines above/below
+set number      " Show line numbers
+set listchars=tab:>\ 
+set list
+set bg=dark
+colorscheme molokai
 
-" ignore case when searching
-" set ic
+set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set laststatus=2 " Status line
 
-" Enable backspace
-set bs=2
+set wildmenu " commend line auto complete
+set wildmode=list:longest       " command 展開
 
-" Show line numbers
-set nu
+set t_Co=256
+set hlsearch
+set incsearch
+set backspace=2 " Enable backspace
+
+" Font settings for gvim
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=DejaVu\ Sans\ Mono\ 15
+  elseif has("gui_macvim")
+    set guifont=DejaVu\ Sans\ Mono:h15
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+
 
 " Tab charactor related settings
 set tabstop=4
@@ -54,15 +69,14 @@ set shiftwidth=4
 set autoindent
 set smarttab
 set smartindent
-set listchars=tab:>\ 
-set list
+set shiftround
 
 set autochdir
 
-set statusline=%4*%<\ %1*[%F]
-set statusline+=%4*\ %5*[%{&encoding},  "encoding
-set statusline+=%{&fileformat}]%m       "file format
-set statusline+=%4*%=\ %6*%y%4*\ %3*%l%4*,\ %3*%c%4*\ \<\ %2*%P%4*\ \>
+"set statusline=%4*%<\ %1*[%F]
+"set statusline+=%4*\ %5*[%{&encoding},  "encoding
+"set statusline+=%{&fileformat}]%m       "file format
+"set statusline+=%4*%=\ %6*%y%4*\ %3*%l%4*,\ %3*%c%4*\ \<\ %2*%P%4*\ \>
 
 hi User1 ctermfg=cyan ctermbg=darkgray
 hi User2 term=underline ctermfg=yellow ctermbg=darkgray
@@ -80,13 +94,15 @@ autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
 
 " hotkeys {{{
 
-imap<F9> <ESC>:w<Enter><F9>
-nmap<F9> :!./%:t
-
+nnoremap <BS> X
 nnoremap k gk
 nnoremap j gj
-
 inoremap jj <ESC> 
+
+set pastetoggle=<F5>
+
+imap<F9> <ESC>:w<Enter><F9>
+nmap<F9> :!./%:t
 
 function! Set_c_Prefs()
 	nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
@@ -95,9 +111,9 @@ function! Set_c_Prefs()
 endfunction
 
 function! Set_cpp_Prefs()
-	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
-	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
-	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -static -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
+	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
+	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
+	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
 endfunction
 
 function! Set_python_Prefs()
@@ -136,6 +152,8 @@ autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype less,htm,xml,html,xhtml,php,css call Set_web_Prefs()
 autocmd filetype javascript call Set_js_Prefs()
 
+autocmd! bufwritepost .vimrc source % " vimrc文件修改後自動reload。 linux。
+
 " }}}
 
 " plugin {{{
@@ -158,6 +176,8 @@ Bundle 'maksimr/vim-jsbeautify'
 " syntax
 Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
+Bundle 'mxw/vim-jsx'
+Bundle 'othree/yajs.vim'
 
 " }}}
 
