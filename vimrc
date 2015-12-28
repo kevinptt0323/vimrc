@@ -166,6 +166,10 @@ map <C-n> :NERDTreeTabsToggle<CR>
 let g:NERDTreeDirArrows=0
 " }}}
 
+" SuperTab {{{
+let g:SuperTabDefaultCompletionType = "<c-n>"
+" }}}
+
 " jsbeautify {{{
 " }}}
 
