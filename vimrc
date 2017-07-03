@@ -64,6 +64,7 @@ endif
 
 
 " Tab charactor related settings
+set noexpandtab
 set tabstop=4
 set shiftwidth=4
 set autoindent
@@ -117,7 +118,7 @@ function! Set_cpp_Prefs()
 endfunction
 
 function! Set_python_Prefs()
-	nmap<F9> :!python3 "%:t"
+	nmap<F9> :!python "%"
 endfunction
 
 function! Set_pascal_Prefs()
@@ -138,7 +139,7 @@ function! Set_js_Prefs()
 	setlocal shiftwidth=2
 	setlocal expandtab
 	nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
-	nmap<F10> :!jshint "%"
+	nmap<F10> :!eslint "%"
 endfunction
 
 
@@ -176,8 +177,9 @@ Bundle 'maksimr/vim-jsbeautify'
 " syntax
 Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
-Bundle 'mxw/vim-jsx'
 Bundle 'othree/yajs.vim'
+Bundle 'mxw/vim-jsx'
+Bundle 'posva/vim-vue'
 
 " }}}
 
