@@ -130,27 +130,28 @@ endfunction
 function! Set_web_Prefs()
 	setlocal tabstop=2
 	setlocal shiftwidth=2
-	"setlocal expandtab
-	setlocal listchars=tab:\|\ 
+	setlocal expandtab
+	"setlocal listchars=tab:\|\ 
 endfunction
 
 function! Set_js_Prefs()
 	setlocal tabstop=2
 	setlocal shiftwidth=2
 	setlocal expandtab
-	nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
-	nmap<F10> :!eslint "%"
+	"nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
+	"nmap<F10> :!eshint "%"
 endfunction
 
 
 filetype plugin on
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.less set filetype=less
+au BufNewFile,BufRead *.vue set filetype=vue
 autocmd filetype c call Set_c_Prefs()
 autocmd filetype cpp call Set_cpp_Prefs()
 autocmd filetype python call Set_python_Prefs()
 autocmd filetype pascal call Set_pascal_Prefs()
-autocmd filetype less,htm,xml,html,xhtml,php,css call Set_web_Prefs()
+autocmd filetype less,htm,xml,html,xhtml,php,css,vue call Set_web_Prefs()
 autocmd filetype javascript call Set_js_Prefs()
 
 autocmd! bufwritepost .vimrc source % " vimrc文件修改後自動reload。 linux。
