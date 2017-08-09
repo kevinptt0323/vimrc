@@ -31,7 +31,7 @@ set noswapfile
 syntax on
 set ruler
 set cursorline
-set cursorcolumn
+"set cursorcolumn
 set showmode    " Show mode on bottom-left
 set scrolloff=5 " keep at least 5 lines above/below
 set number      " Show line numbers
@@ -145,6 +145,7 @@ endfunction
 
 filetype plugin on
 au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.handlebars set filetype=html
 au BufNewFile,BufRead *.less set filetype=less
 au BufNewFile,BufRead *.vue set filetype=vue
 autocmd filetype c call Set_c_Prefs()
