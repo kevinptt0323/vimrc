@@ -1,17 +1,4 @@
-" set for vundle
-" git clone https://github.com/gmarik/Vundle.vim
-filetype off
-if has("unix")
-	set rtp+=~/.vim/bundle/Vundle.vim/
-	call vundle#rc()
-else 
-	set rtp+=~/vimfiles/bundle/Vundle.vim/
-	call vundle#rc('$HOME/vimfiles/bundle/')
-endif
-
-
-filetype on
-
+source $HOME/.vim/plugins.vim
 
 "Encoding settings
 set encoding=utf-8
@@ -92,7 +79,6 @@ hi TabLineSel ctermfg=White ctermbg=Black
 
 autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
 
-
 " hotkeys {{{
 
 nnoremap <BS> X
@@ -103,12 +89,10 @@ inoremap jj <ESC>
 set pastetoggle=<F5>
 
 imap<F9> <ESC>:w<Enter><F9>
-nmap<F9> :!./%:t
 
 function! Set_c_Prefs()
 	nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
 	nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im<CR>
-	nmap<F11> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im -g && valgrind --leak-check=full --log-file=%:r.vglog ./%:r.out<CR>
 endfunction
 
 function! Set_cpp_Prefs()
@@ -118,13 +102,6 @@ function! Set_cpp_Prefs()
 endfunction
 
 function! Set_python_Prefs()
-	nmap<F9> :!python "%"
-endfunction
-
-function! Set_pascal_Prefs()
-	nmap<F9>  :!fpc "%:t" && echo "===== compile done =====" && "./%:r"
-	nmap<F10> :!fpc "%:t"
-	nmap<F11> :!fpc "%:t" && valgrind --leak-check=full --log-file=%:r.vglog ./%:r
 endfunction
 
 function! Set_web_Prefs()
@@ -138,8 +115,7 @@ function! Set_js_Prefs()
 	setlocal tabstop=2
 	setlocal shiftwidth=2
 	setlocal expandtab
-	"nnoremap <buffer>  <c-f> :call JsBeautify()<cr>
-	"nmap<F10> :!eshint "%"
+	nmap<F10> :!eslint "%"
 endfunction
 
 
@@ -153,48 +129,8 @@ autocmd filetype cpp call Set_cpp_Prefs()
 autocmd filetype python call Set_python_Prefs()
 autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype less,htm,xml,html,xhtml,php,css,vue call Set_web_Prefs()
-autocmd filetype javascript call Set_js_Prefs()
+autocmd filetype javascript,jsx call Set_js_Prefs()
 
 autocmd! bufwritepost .vimrc source % " vimrc文件修改後自動reload。 linux。
-
-" }}}
-
-" plugin {{{
-" bundle settings {{{
-
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
-
-" NERDTree
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-
-" SuperTab
-Bundle 'ervandew/supertab'
-
-" jsbeautify
-Bundle 'maksimr/vim-jsbeautify'
-
-" syntax
-Bundle 'ap/vim-css-color'
-Bundle 'groenewege/vim-less'
-Bundle 'othree/yajs.vim'
-Bundle 'mxw/vim-jsx'
-Bundle 'posva/vim-vue'
-
-" }}}
-
-" NERDTree {{{
-map <C-n> :NERDTreeTabsToggle<CR>
-let g:NERDTreeDirArrows=0
-" }}}
-
-" SuperTab {{{
-let g:SuperTabDefaultCompletionType = "<c-n>"
-" }}}
-
-" jsbeautify {{{
-" }}}
 
 " }}}
