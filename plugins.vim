@@ -4,7 +4,7 @@ filetype off
 if has("unix")
 	set rtp+=~/.vim/bundle/Vundle.vim/
 	call vundle#rc()
-else 
+else
 	set rtp+=~/vimfiles/bundle/Vundle.vim/
 	call vundle#rc('$HOME/vimfiles/bundle/')
 endif

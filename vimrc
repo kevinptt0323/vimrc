@@ -1,4 +1,4 @@
-source $HOME/.vim/plugins.vim
+runtime plugins.vim
 
 "Encoding settings
 set encoding=utf-8
