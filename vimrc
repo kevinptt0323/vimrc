@@ -37,6 +37,7 @@ set t_Co=256
 set hlsearch
 set incsearch
 set backspace=2 " Enable backspace
+set mouse=a
 
 " Font settings for gvim
 if has("gui_running")
