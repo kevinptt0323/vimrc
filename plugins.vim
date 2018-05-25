@@ -23,6 +23,7 @@ Bundle 'gmarik/vundle'
 " NERDTree
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'editorconfig/editorconfig-vim'
 
 " SuperTab
 Bundle 'ervandew/supertab'
