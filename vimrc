@@ -51,6 +51,8 @@ if has("gui_running")
 endif
 
 
+set textwidth=80
+set colorcolumn=+1
 " Tab charactor related settings
 set noexpandtab
 set tabstop=4
