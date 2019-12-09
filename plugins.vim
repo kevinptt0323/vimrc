@@ -42,6 +42,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'isRuslan/vim-es6'
 Bundle 'mxw/vim-jsx'
 Bundle 'posva/vim-vue'
+Bundle 'leafgarland/typescript-vim'
+Bundle 'peitalin/vim-jsx-typescript'
 
 call vundle#end()
 " }}}
