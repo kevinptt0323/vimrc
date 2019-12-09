@@ -1,3 +1,4 @@
+let mapleader=" "
 runtime plugins.vim
 
 "Encoding settings
@@ -88,6 +89,16 @@ nnoremap <BS> X
 nnoremap k gk
 nnoremap j gj
 inoremap jj <ESC> 
+
+" fzf
+nnoremap <leader>fl :Lines
+nnoremap <leader>fb :BLines
+nnoremap <leader>ff :Files
+nnoremap <leader>fg :GFiles
+nnoremap <leader>f? :GFiles?
+nnoremap <leader>ft :Tags<cr>
+nnoremap <leader>fa :Ag
+nnoremap <leader>fc :Commits
 
 set pastetoggle=<F5>
 

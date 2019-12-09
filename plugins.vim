@@ -28,6 +28,10 @@ Bundle 'editorconfig/editorconfig-vim'
 " SuperTab
 Bundle 'ervandew/supertab'
 
+" fzf
+Bundle 'junegunn/fzf'
+Bundle 'junegunn/fzf.vim'
+
 " jsbeautify
 "Bundle 'maksimr/vim-jsbeautify'
 
@@ -49,6 +53,10 @@ let g:NERDTreeDirArrows=0
 
 " SuperTab {{{
 let g:SuperTabDefaultCompletionType = "<c-n>"
+" }}}
+
+" fzf {{{
+let g:fzf_buffers_jump = 1
 " }}}
 
 " vim-jsx {{{
