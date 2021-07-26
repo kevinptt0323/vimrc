@@ -27,23 +27,23 @@ Bundle 'editorconfig/editorconfig-vim'
 
 " SuperTab
 Bundle 'ervandew/supertab'
+Bundle 'ycm-core/YouCompleteMe'
 
 " fzf
 Bundle 'junegunn/fzf'
 Bundle 'junegunn/fzf.vim'
 
-" jsbeautify
-"Bundle 'maksimr/vim-jsbeautify'
+Bundle 'tpope/vim-fugitive'
+Bundle 'taglist.vim'
 
 " syntax
 Bundle 'ap/vim-css-color'
 Bundle 'groenewege/vim-less'
-"Bundle 'othree/yajs.vim'
-Bundle 'isRuslan/vim-es6'
+Bundle 'othree/yajs.vim'
 Bundle 'mxw/vim-jsx'
 Bundle 'posva/vim-vue'
 Bundle 'leafgarland/typescript-vim'
-Bundle 'peitalin/vim-jsx-typescript'
+"Bundle 'peitalin/vim-jsx-typescript'
 
 call vundle#end()
 " }}}
@@ -61,8 +61,17 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:fzf_buffers_jump = 1
 " }}}
 
+" taglist.vim {{{
+set tags=tags;~,TAGS;~
+" }}}
+
 " vim-jsx {{{
 let g:jsx_ext_required = 0
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 " }}}
 
 " }}}

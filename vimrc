@@ -81,7 +81,7 @@ hi User6 ctermfg=white ctermbg=darkgray
 hi TabLine ctermfg=Black ctermbg=Grey
 hi TabLineSel ctermfg=White ctermbg=Black
 
-autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
+" autocmd! BufNewFile * silent! 0r ~/.vim/skel/Template.%:e
 
 " hotkeys {{{
 
@@ -91,14 +91,14 @@ nnoremap j gj
 inoremap jj <ESC> 
 
 " fzf
-nnoremap <leader>fl :Lines
-nnoremap <leader>fb :BLines
-nnoremap <leader>ff :Files
-nnoremap <leader>fg :GFiles
-nnoremap <leader>f? :GFiles?
-nnoremap <leader>ft :Tags<cr>
-nnoremap <leader>fa :Ag
-nnoremap <leader>fc :Commits
+" nnoremap <leader>fl :Lines
+" nnoremap <leader>fb :BLines
+" nnoremap <leader>ff :Files
+nnoremap <leader>o :GFiles
+" nnoremap <leader>f? :GFiles?
+" nnoremap <leader>ft :Tags<cr>
+nnoremap <leader>rg :Rg
+" nnoremap <leader>fc :Commits
 
 set pastetoggle=<F5>
 
@@ -132,6 +132,19 @@ function! Set_js_Prefs()
 	nmap<F10> :!eslint "%"
 endfunction
 
+function! Set_go_Prefs()
+	setlocal tabstop=4
+	setlocal shiftwidth=4
+endfunction
+
+function! Set_json_Prefs()
+	set foldmethod=syntax
+endfunction
+
+function! FormatJson()
+	set filetype=json
+	:%!jq .
+endfunction
 
 filetype plugin on
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -144,7 +157,11 @@ autocmd filetype python call Set_python_Prefs()
 autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype less,htm,xml,html,xhtml,php,css,vue call Set_web_Prefs()
 autocmd filetype javascript,jsx call Set_js_Prefs()
+autocmd filetype go call Set_go_Prefs()
+autocmd filetype json call Set_json_Prefs()
 
 autocmd! bufwritepost .vimrc source % " vimrc文件修改後自動reload。 linux。
+
+command Fj call FormatJson()
 
 " }}}
