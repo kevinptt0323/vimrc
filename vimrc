@@ -26,7 +26,7 @@ set number      " Show line numbers
 set listchars=tab:>\ 
 set list
 set bg=dark
-colorscheme molokai
+colorscheme monokai
 
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2 " Status line

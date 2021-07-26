@@ -17,8 +17,8 @@ call vundle#begin()
 " required!
 Bundle 'gmarik/vundle'
 
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
+" Theme
+Bundle 'crusoexia/vim-monokai'
 
 " NERDTree
 Bundle 'scrooloose/nerdtree'
