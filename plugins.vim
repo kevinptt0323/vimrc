@@ -13,10 +13,6 @@ endif
 " bundle settings {{{
 call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/vundle'
-
 " Theme
 Plugin 'crusoexia/vim-monokai'
 
