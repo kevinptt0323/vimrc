@@ -15,35 +15,35 @@ call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Theme
-Bundle 'crusoexia/vim-monokai'
+Plugin 'crusoexia/vim-monokai'
 
 " NERDTree
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'editorconfig/editorconfig-vim'
 
 " SuperTab
-Bundle 'ervandew/supertab'
-Bundle 'ycm-core/YouCompleteMe'
+Plugin 'ervandew/supertab'
+Plugin 'ycm-core/YouCompleteMe'
 
 " fzf
-Bundle 'junegunn/fzf'
-Bundle 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
-Bundle 'tpope/vim-fugitive'
-Bundle 'taglist.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'taglist.vim'
 
 " syntax
-Bundle 'ap/vim-css-color'
-Bundle 'groenewege/vim-less'
-Bundle 'othree/yajs.vim'
-Bundle 'mxw/vim-jsx'
-Bundle 'posva/vim-vue'
-Bundle 'leafgarland/typescript-vim'
-"Bundle 'peitalin/vim-jsx-typescript'
+Plugin 'ap/vim-css-color'
+Plugin 'groenewege/vim-less'
+Plugin 'othree/yajs.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'posva/vim-vue'
+Plugin 'leafgarland/typescript-vim'
+"Plugin 'peitalin/vim-jsx-typescript'
 
 call vundle#end()
 " }}}
