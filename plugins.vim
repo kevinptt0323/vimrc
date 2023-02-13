@@ -54,7 +54,15 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " }}}
 
 " fzf {{{
+let g:fzf_layout = { 'down': '80%' }
+
 let g:fzf_buffers_jump = 1
+let g:fzf_preview_window = ['right:70%', 'ctrl-/']
+
+nnoremap <leader><C-o> :Files .<CR>
+nnoremap <leader>g<C-o> :GFiles<CR>
+nnoremap <leader>/ :Rg 
+nnoremap <leader><C-f> :Rg <CR>
 " }}}
 
 " taglist.vim {{{
@@ -66,8 +74,12 @@ let g:jsx_ext_required = 0
 " }}}
 
 " YouCompleteMe {{{
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+
+nnoremap <leader>jd :YcmCompleter GoTo
+nnoremap <leader><F12> :YcmCompleter GoTo
 " }}}
 
 " }}}

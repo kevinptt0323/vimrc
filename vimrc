@@ -90,15 +90,15 @@ nnoremap k gk
 nnoremap j gj
 inoremap jj <ESC> 
 
-" fzf
-" nnoremap <leader>fl :Lines
-" nnoremap <leader>fb :BLines
-" nnoremap <leader>ff :Files
-nnoremap <leader>o :GFiles
-" nnoremap <leader>f? :GFiles?
-" nnoremap <leader>ft :Tags<cr>
-nnoremap <leader>rg :Rg
-" nnoremap <leader>fc :Commits
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+
 
 set pastetoggle=<F5>
 
