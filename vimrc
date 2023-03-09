@@ -23,10 +23,10 @@ set cursorline
 set showmode    " Show mode on bottom-left
 set scrolloff=5 " keep at least 5 lines above/below
 set number      " Show line numbers
-set listchars=tab:>\ 
-set list
+set list listchars=tab:>\ 
 set bg=dark
 colorscheme monokai
+set fdm=syntax fdls=99 fdc=5 fdt=MyFoldText() " Use 'za' to toggle folding
 
 set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 set laststatus=2 " Status line
@@ -55,9 +55,7 @@ endif
 set textwidth=80
 set colorcolumn=+1
 " Tab charactor related settings
-set noexpandtab
-set tabstop=4
-set shiftwidth=4
+set noexpandtab tabstop=4 shiftwidth=4
 set autoindent
 set smarttab
 set smartindent
@@ -90,61 +88,82 @@ nnoremap k gk
 nnoremap j gj
 inoremap jj <ESC> 
 
+" Cut contents to black hole register by default.
 nnoremap x "_x
 nnoremap d "_d
 nnoremap D "_D
 vnoremap d "_d
 
+" Cut contents to default register with the leader key.
 nnoremap <leader>d ""d
 nnoremap <leader>D ""D
 vnoremap <leader>d ""d
 
+" Fold
+nnoremap <leader>z zfa
 
 set pastetoggle=<F5>
 
 imap<F9> <ESC>:w<Enter><F9>
 
 function! Set_c_Prefs()
-	nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
-	nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im<CR>
+  nmap<F9>  :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
+  nmap<F10> :!gcc "%:t" -o "%:r.out" -Wall -Wshadow -O2 -Im<CR>
 endfunction
 
 function! Set_cpp_Prefs()
-	nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
-	nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
-	nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
-endfunction
-
-function! Set_python_Prefs()
+  nmap<F8> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im && echo "===== compile done =====" && "./%:r.out"<CR>
+  nmap<F9> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT && echo "===== compile done =====" && "./%:r.out"<CR>
+  nmap<F10> :!g++ "%:t" -o "%:r.out" --std=c++11 -Wall -Wshadow -O2 -Im -DKEVINPTT<CR>
 endfunction
 
 function! Set_web_Prefs()
-	setlocal tabstop=2
-	setlocal shiftwidth=2
-	setlocal expandtab
-	"setlocal listchars=tab:\|\ 
+  setlocal tabstop=2
+  setlocal shiftwidth=2
+  setlocal expandtab
+  "setlocal listchars=tab:\|\ 
 endfunction
 
 function! Set_js_Prefs()
-	setlocal tabstop=2
-	setlocal shiftwidth=2
-	setlocal expandtab
-	nmap<F10> :!eslint "%"
+  setlocal tabstop=2 shiftwidth=2
+  setlocal expandtab
+  nmap<F10> :!eslint "%"
 endfunction
 
 function! Set_go_Prefs()
-	setlocal tabstop=4
-	setlocal shiftwidth=4
+  setlocal tabstop=4
+  setlocal shiftwidth=4
 endfunction
 
 function! Set_json_Prefs()
-	set foldmethod=syntax
+  setlocal tabstop=2 shiftwidth=2
 endfunction
 
 function! FormatJson()
-	set filetype=json
-	:%!jq .
+  set filetype=json
+  :%!jq .
 endfunction
+
+function! MyFoldText() " {{{
+  let line = getline(v:foldstart)
+  let last_line = getline(v:foldend)
+
+  let nucolwidth = &fdc + &number * &numberwidth
+  let windowwidth = winwidth(0) - nucolwidth - 3
+  let foldedlinecount = v:foldend - v:foldstart
+
+  " expand tabs into spaces
+  let onetab = strpart('          ', 0, &tabstop)
+  let line = substitute(line, '\t', onetab, 'g')
+  let last_line = substitute(last_line, '\t', onetab, 'g')
+  let last_line = substitute(last_line, '^ *', '', 'g')
+
+  let line_count_str = '(' . foldedlinecount . ' lines)'
+
+  let line = strpart(line, 0, windowwidth - len(last_line) - len(line_count_str) - 2)
+  let fillcharcount = windowwidth - len(line) - len(last_line) - len(line_count_str) - 2
+  return line . ' … ' . last_line . ' ' . repeat(" ", fillcharcount) . line_count_str . ' '
+endfunction " }}}
 
 filetype plugin on
 au BufNewFile,BufRead *.ejs set filetype=html
@@ -153,8 +172,6 @@ au BufNewFile,BufRead *.less set filetype=less
 au BufNewFile,BufRead *.vue set filetype=vue
 autocmd filetype c call Set_c_Prefs()
 autocmd filetype cpp call Set_cpp_Prefs()
-autocmd filetype python call Set_python_Prefs()
-autocmd filetype pascal call Set_pascal_Prefs()
 autocmd filetype less,htm,xml,html,xhtml,php,css,vue call Set_web_Prefs()
 autocmd filetype javascript,jsx call Set_js_Prefs()
 autocmd filetype go call Set_go_Prefs()
